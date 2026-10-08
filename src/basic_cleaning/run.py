@@ -65,7 +65,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--output_artifact", 
         type = str, ## INSERT TYPE HERE: str, float or int,
-        help = "Output artifact for cleaned data" ## INSERT DESCRIPTION HERE,
+        help = "Output artifact for cleaned data", ## INSERT DESCRIPTION HERE,
         required = True
     )
 
