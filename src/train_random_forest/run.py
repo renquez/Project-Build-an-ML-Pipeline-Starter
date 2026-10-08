@@ -98,9 +98,7 @@ def go(args):
     # HINT: use mlflow.sklearn.save_model
     mlflow.sklearn.save_model(
         sk_pipe,
-        random_forest_dir,
-        serialization_format=mlflow.sklearn.SERILIZATION_FORMAT_CLOUDPICLKE,
-        signature=signature, # YOUR CODE HERE
+        "random_forest_dir",
         input_example = X_train.iloc[:5]
     )
     ######################################
@@ -124,6 +122,7 @@ def go(args):
     run.summary['r2'] = r_squared
     # Now save the variable mae under the key "mae".
     # YOUR CODE HERE
+    run.summary['mae'] = mae
 
     ######################################
 
@@ -167,7 +166,9 @@ def get_inference_pipeline(rf_config, max_tfidf_features):
     # 1 - A SimpleImputer(strategy="most_frequent") to impute missing values
     # 2 - A OneHotEncoder() step to encode the variable
     non_ordinal_categorical_preproc = make_pipeline(
-        # YOUR CODE HERE
+        SimpleImputer(strategy="most_frequent"),
+        OneHotEncoder(),
+            # YOUR CODE HERE
     )
     ######################################
 
@@ -229,7 +230,9 @@ def get_inference_pipeline(rf_config, max_tfidf_features):
     # HINT: Use the explicit Pipeline constructor so you can assign the names to the steps, do not use make_pipeline
 
     sk_pipe = Pipeline(
-        steps =[
+        steps=[
+            ("preprocessor",preprocessor),
+            ("random_forest", random_forest),
         # YOUR CODE HERE
         ]
     )

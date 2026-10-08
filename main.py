@@ -98,7 +98,7 @@ def go(config: DictConfig):
                     "stratify_by": config["modeling"]["stratify_by"],
                 },
             )
-            
+
 
         if "train_random_forest" in active_steps:
 
